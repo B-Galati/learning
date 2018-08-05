@@ -1,0 +1,15 @@
+{
+    "name": "benoit/async-php",
+    "description": "learning async stuf with PHP",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benoit Galati",
+            "email": "benoit.galati@gmail.com"
+        }
+    ],
+    "require": {
+        "amphp/amp": "^2.0"
+    }
+}
