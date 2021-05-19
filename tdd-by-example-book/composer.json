@@ -1,0 +1,15 @@
+{
+    "name": "bgalati/tdd-by-example-book",
+    "description": "Practicing TDD with the book TDD by example by Kent Beck",
+    "type": "project",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "authors": [
+        {
+            "name": "Benoit Galati",
+            "email": "benoit.galati@gmail.com"
+        }
+    ],
+    "require": {}
+}
