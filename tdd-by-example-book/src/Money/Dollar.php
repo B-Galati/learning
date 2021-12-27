@@ -13,8 +13,8 @@ final class Dollar
         $this->amount = $amount;
     }
 
-    public function times(int $times): void
+    public function times(int $times): self
     {
-        $this->amount *= $times;
+        return new self($this->amount * $times);
     }
 }
