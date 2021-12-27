@@ -17,4 +17,9 @@ final class Dollar
     {
         return new self($this->amount * $times);
     }
+
+    public function equals(Dollar $dollar): bool
+    {
+        return true;
+    }
 }
