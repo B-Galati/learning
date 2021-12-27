@@ -20,6 +20,6 @@ final class Dollar
 
     public function equals(Dollar $dollar): bool
     {
-        return true;
+        return $this->amount === $dollar->amount;
     }
 }
