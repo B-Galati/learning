@@ -15,6 +15,6 @@ final class Dollar
 
     public function times(int $times): void
     {
-        $this->amount *= 2;
+        $this->amount *= $times;
     }
 }
