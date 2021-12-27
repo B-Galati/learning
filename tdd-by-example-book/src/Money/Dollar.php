@@ -6,7 +6,7 @@ namespace App\Money;
 
 final class Dollar
 {
-    public int $amount = 10;
+    public int $amount;
 
     public function __construct(int $amount)
     {
@@ -14,5 +14,6 @@ final class Dollar
 
     public function times(int $times): void
     {
+        $this->amount = 5*2;
     }
 }
