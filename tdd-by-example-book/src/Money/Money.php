@@ -12,9 +12,19 @@ abstract class Money
 {
     protected int $amount;
 
-    public function __construct(int $amount)
+    protected function __construct(int $amount)
     {
         $this->amount = $amount;
+    }
+
+    public static function dollar(int $amount): Money
+    {
+        return new Dollar($amount);
+    }
+
+    public static function franc(int $amount): Money
+    {
+        return new Franc($amount);
     }
 
     #[Pure]
