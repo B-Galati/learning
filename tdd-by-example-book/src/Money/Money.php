@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Money;
 
+use JetBrains\PhpStorm\Immutable;
+use JetBrains\PhpStorm\Pure;
+
+#[Immutable]
 abstract class Money
 {
     protected int $amount;
@@ -13,13 +17,16 @@ abstract class Money
         $this->amount = $amount;
     }
 
-    public function times(int $times): self
+    #[Pure]
+    public function times(int $times): static
     {
         return new static($this->amount * $times);
     }
 
     public function equals(Money $money): bool
     {
-        return $this->amount === $money->amount;
+        return
+            get_class($money) === get_class($this)
+            && $this->amount === $money->amount;
     }
 }
