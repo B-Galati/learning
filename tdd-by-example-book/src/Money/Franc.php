@@ -4,22 +4,6 @@ declare(strict_types=1);
 
 namespace App\Money;
 
-final class Franc
+final class Franc extends Money
 {
-    private int $amount;
-
-    public function __construct(int $amount)
-    {
-        $this->amount = $amount;
-    }
-
-    public function times(int $times): self
-    {
-        return new self($this->amount * $times);
-    }
-
-    public function equals(Franc $dollar): bool
-    {
-        return $this->amount === $dollar->amount;
-    }
 }
