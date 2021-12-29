@@ -6,10 +6,8 @@ namespace App\Money;
 
 final class Dollar extends Money
 {
-    private string $currency = 'USD';
-
-    public function currency(): string
+    protected function __construct(int $amount)
     {
-        return $this->currency;
+        parent::__construct($amount, 'USD');
     }
 }

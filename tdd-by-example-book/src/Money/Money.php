@@ -11,10 +11,12 @@ use JetBrains\PhpStorm\Pure;
 abstract class Money
 {
     protected int $amount;
+    protected string $currency;
 
-    protected function __construct(int $amount)
+    protected function __construct(int $amount, string $currency)
     {
         $this->amount = $amount;
+        $this->currency = $currency;
     }
 
     public static function dollar(int $amount): Money
@@ -40,5 +42,8 @@ abstract class Money
             && $this->amount === $money->amount;
     }
 
-    abstract public function currency(): string;
+    public function currency(): string
+    {
+        return $this->currency;
+    }
 }
