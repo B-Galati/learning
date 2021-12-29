@@ -6,8 +6,10 @@ namespace App\Money;
 
 final class Franc extends Money
 {
+    private string $currency = 'CHF';
+
     public function currency(): string
     {
-        return 'CHF';
+        return $this->currency;
     }
 }

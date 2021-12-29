@@ -6,8 +6,10 @@ namespace App\Money;
 
 final class Dollar extends Money
 {
+    private string $currency = 'USD';
+
     public function currency(): string
     {
-        return 'USD';
+        return $this->currency;
     }
 }
