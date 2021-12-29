@@ -6,4 +6,8 @@ namespace App\Money;
 
 final class Dollar extends Money
 {
+    public function currency(): string
+    {
+        return 'USD';
+    }
 }

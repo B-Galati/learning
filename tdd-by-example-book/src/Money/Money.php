@@ -39,4 +39,6 @@ abstract class Money
             get_class($money) === get_class($this)
             && $this->amount === $money->amount;
     }
+
+    abstract public function currency(): string;
 }
