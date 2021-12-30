@@ -10,13 +10,8 @@ use JetBrains\PhpStorm\Pure;
 #[Immutable]
 abstract class Money
 {
-    protected int $amount;
-    protected string $currency;
-
-    protected function __construct(int $amount, string $currency)
+    protected function __construct(protected readonly int $amount, protected readonly string $currency)
     {
-        $this->amount = $amount;
-        $this->currency = $currency;
     }
 
     public static function dollar(int $amount): Money
