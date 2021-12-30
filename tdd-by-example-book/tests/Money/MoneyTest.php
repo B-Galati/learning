@@ -31,6 +31,11 @@ final class MoneyTest extends TestCase
         $this->assertFalse((Money::franc(5))->equals(Money::dollar(5)));
     }
 
+    public function testDifferentClassEquality(): void
+    {
+        $this->assertTrue((new Money(10, 'CHF'))->equals(Money::franc(10)));
+    }
+
     public function testCurrency(): void
     {
         $this->assertSame('USD', Money::dollar(1)->currency());

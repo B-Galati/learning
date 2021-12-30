@@ -10,7 +10,7 @@ use JetBrains\PhpStorm\Pure;
 #[Immutable]
 class Money
 {
-    protected function __construct(protected readonly int $amount, protected readonly string $currency)
+    public function __construct(protected readonly int $amount, protected readonly string $currency)
     {
     }
 
@@ -33,7 +33,7 @@ class Money
     public function equals(Money $money): bool
     {
         return
-            get_class($money) === get_class($this)
+            $this->currency === $money->currency
             && $this->amount === $money->amount;
     }
 
