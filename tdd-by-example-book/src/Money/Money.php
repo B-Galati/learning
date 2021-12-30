@@ -14,11 +14,13 @@ final class Money
     {
     }
 
+    #[Pure]
     public static function dollar(int $amount): Money
     {
         return new Money($amount, 'USD');
     }
 
+    #[Pure]
     public static function franc(int $amount): Money
     {
         return new Money($amount, 'CHF');
@@ -40,5 +42,11 @@ final class Money
     public function currency(): string
     {
         return $this->currency;
+    }
+
+    #[Pure]
+    public function plus(Money $money): Money
+    {
+        return new self($this->amount + $money->amount, $this->currency);
     }
 }
