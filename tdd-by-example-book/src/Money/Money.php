@@ -8,9 +8,9 @@ use JetBrains\PhpStorm\Immutable;
 use JetBrains\PhpStorm\Pure;
 
 #[Immutable]
-class Money
+final class Money
 {
-    public function __construct(protected readonly int $amount, protected readonly string $currency)
+    private function __construct(protected readonly int $amount, protected readonly string $currency)
     {
     }
 
