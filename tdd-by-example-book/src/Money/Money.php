@@ -21,13 +21,13 @@ class Money
 
     public static function franc(int $amount): Money
     {
-        return new Franc($amount, 'CHF');
+        return new Money($amount, 'CHF');
     }
 
     #[Pure]
     public function times(int $times): self
     {
-        return new static($this->amount * $times, $this->currency);
+        return new Money($this->amount * $times, $this->currency);
     }
 
     public function equals(Money $money): bool
