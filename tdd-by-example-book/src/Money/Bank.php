@@ -9,7 +9,7 @@ use JetBrains\PhpStorm\Pure;
 final class Bank
 {
     #[Pure]
-    public function reduce(Money $sum, string $currency): Money
+    public function reduce(Expression $source, string $to): Money
     {
         return Money::dollar(10);
     }

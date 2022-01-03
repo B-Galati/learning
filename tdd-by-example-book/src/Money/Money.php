@@ -8,7 +8,7 @@ use JetBrains\PhpStorm\Immutable;
 use JetBrains\PhpStorm\Pure;
 
 #[Immutable]
-final class Money
+final class Money implements Expression
 {
     private function __construct(protected readonly int $amount, protected readonly string $currency)
     {
@@ -45,7 +45,7 @@ final class Money
     }
 
     #[Pure]
-    public function plus(Money $money): Money
+    public function plus(Money $money): Expression
     {
         return new self($this->amount + $money->amount, $this->currency);
     }
