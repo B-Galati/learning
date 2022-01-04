@@ -6,6 +6,7 @@ namespace Test\Money;
 
 use App\Money\Bank;
 use App\Money\Money;
+use App\Money\Sum;
 use PHPUnit\Framework\TestCase;
 
 final class MoneyTest extends TestCase
@@ -37,5 +38,30 @@ final class MoneyTest extends TestCase
         $bank = new Bank();
         $reduced = $bank->reduce($sum, 'USD');
         $this->assertEquals(Money::dollar(10), $reduced);
+    }
+
+    public function testPlusReturnsSum(): void
+    {
+        // TODO delete this test once useless
+        $five = Money::dollar(5);
+        $result = $five->plus($five);
+        $this->assertInstanceOf(Sum::class, $result);
+        $this->assertSame($five, $result->augend);
+        $this->assertSame($five, $result->addend);
+    }
+
+    public function testReduceSum(): void
+    {
+        $sum = new Sum(Money::dollar(3), Money::dollar(4));
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, 'USD');
+        $this->assertEquals(Money::dollar(7), $reduced);
+    }
+
+    public function testReduceMoney(): void
+    {
+        $bank = new Bank();
+        $reduced = $bank->reduce(Money::dollar(1), 'USD');
+        $this->assertEquals(Money::dollar(1), $reduced);
     }
 }

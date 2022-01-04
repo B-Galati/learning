@@ -10,7 +10,7 @@ use JetBrains\PhpStorm\Pure;
 #[Immutable]
 final class Money implements Expression
 {
-    private function __construct(protected readonly int $amount, protected readonly string $currency)
+    public function __construct(public readonly int $amount, public readonly string $currency)
     {
     }
 
@@ -47,6 +47,11 @@ final class Money implements Expression
     #[Pure]
     public function plus(Money $money): Expression
     {
-        return new self($this->amount + $money->amount, $this->currency);
+        return new Sum($this, $money);
+    }
+
+    public function reduce(string $to): Money
+    {
+        return $this;
     }
 }
