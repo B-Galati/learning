@@ -50,12 +50,9 @@ final class Money implements Expression
         return new Sum($this, $money);
     }
 
-    public function reduce(string $to): Money
+    public function reduce(Bank $bank, string $to): Money
     {
-        $rate = 1;
-        if ($this->currency === 'CHF' && $to === 'USD') {
-            $rate = 2;
-        }
+        $rate = $bank->rate($this->currency, $to);
 
         return new Money($this->amount / $rate, $to);
     }

@@ -11,10 +11,19 @@ final class Bank
     #[Pure]
     public function reduce(Expression $source, string $to): Money
     {
-        return $source->reduce($to);
+        return $source->reduce($this, $to);
     }
 
-    public function addRate(string $currencyFrom, string $currencyTo, int $rate): void
+    public function addRate(string $from, string $to, int $rate): void
     {
+    }
+
+    public function rate(string $from, string $to): int
+    {
+        if ($from === 'CHF' && $to === 'USD') {
+            return 2;
+        }
+
+        return 1;
     }
 }
