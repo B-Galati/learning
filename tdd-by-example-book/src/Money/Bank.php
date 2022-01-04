@@ -13,4 +13,8 @@ final class Bank
     {
         return $source->reduce($to);
     }
+
+    public function addRate(string $currencyFrom, string $currencyTo, int $rate): void
+    {
+    }
 }

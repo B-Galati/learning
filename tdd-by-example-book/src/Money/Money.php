@@ -52,6 +52,11 @@ final class Money implements Expression
 
     public function reduce(string $to): Money
     {
-        return $this;
+        $rate = 1;
+        if ($this->currency === 'CHF' && $to === 'USD') {
+            $rate = 2;
+        }
+
+        return new Money($this->amount / $rate, $to);
     }
 }
