@@ -14,25 +14,22 @@ final class Money implements Expression
     {
     }
 
-    #[Pure]
-    public static function dollar(int $amount): Money
+    public static function dollar(int $amount): self
     {
-        return new Money($amount, 'USD');
+        return new self($amount, 'USD');
     }
 
-    #[Pure]
-    public static function franc(int $amount): Money
+    public static function franc(int $amount): self
     {
-        return new Money($amount, 'CHF');
+        return new self($amount, 'CHF');
     }
 
-    #[Pure]
-    public function times(int $times): self
+    public function times(int $times): Expression
     {
-        return new Money($this->amount * $times, $this->currency);
+        return new self($this->amount * $times, $this->currency);
     }
 
-    public function equals(Money $money): bool
+    public function equals(self $money): bool
     {
         return
             $this->currency === $money->currency
@@ -44,16 +41,15 @@ final class Money implements Expression
         return $this->currency;
     }
 
-    #[Pure]
-    public function plus(Money $money): Expression
+    public function plus(Expression $money): Expression
     {
         return new Sum($this, $money);
     }
 
-    public function reduce(Bank $bank, string $to): Money
+    public function reduce(Bank $bank, string $to): self
     {
         $rate = $bank->rate($this->currency, $to);
 
-        return new Money($this->amount / $rate, $to);
+        return new self($this->amount / $rate, $to);
     }
 }
