@@ -22,4 +22,9 @@ final class Sum implements Expression
     {
         return new Sum($this, $money);
     }
+
+    public function times(int $times): Expression
+    {
+        return new Sum($this->augend->times($times), $this->addend->times($times));
+    }
 }

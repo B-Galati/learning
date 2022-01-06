@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Money;
 
 use JetBrains\PhpStorm\Immutable;
-use JetBrains\PhpStorm\Pure;
 
 #[Immutable]
 final class Money implements Expression
