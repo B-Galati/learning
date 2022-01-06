@@ -40,9 +40,9 @@ final class Money implements Expression
         return $this->currency;
     }
 
-    public function plus(Expression $money): Expression
+    public function plus(Expression $addend): Expression
     {
-        return new Sum($this, $money);
+        return new Sum($this, $addend);
     }
 
     public function reduce(Bank $bank, string $to): self
