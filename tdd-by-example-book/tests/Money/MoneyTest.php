@@ -40,16 +40,6 @@ final class MoneyTest extends TestCase
         $this->assertEquals(Money::dollar(10), $reduced);
     }
 
-    public function testPlusReturnsSum(): void
-    {
-        // TODO delete this test once useless
-        $five = Money::dollar(5);
-        $result = $five->plus($five);
-        $this->assertInstanceOf(Sum::class, $result);
-        $this->assertSame($five, $result->augend);
-        $this->assertSame($five, $result->addend);
-    }
-
     public function testReduceSum(): void
     {
         $sum = new Sum(Money::dollar(3), Money::dollar(4));
@@ -82,10 +72,21 @@ final class MoneyTest extends TestCase
     public function testMixedAddition(): void
     {
         $fiveBucks = Money::dollar(5);
-        $fiveFrancs = Money::franc(10);
+        $tenFrancs = Money::franc(10);
         $bank = new Bank();
         $bank->addRate('CHF', 'USD', 2);
-        $reduced = $bank->reduce($fiveBucks->plus($fiveFrancs), 'USD');
+        $reduced = $bank->reduce($fiveBucks->plus($tenFrancs), 'USD');
         $this->assertEquals(Money::dollar(10), $reduced);
+    }
+
+    public function testSumPlusMoney(): void
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+        $sum = (new Sum($fiveBucks, $tenFrancs))->plus($fiveBucks);
+        $reduced = $bank->reduce($sum, 'USD');
+        $this->assertEquals(Money::dollar(15), $reduced);
     }
 }

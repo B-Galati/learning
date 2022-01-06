@@ -5,7 +5,7 @@ namespace App\Money;
 
 final class Sum implements Expression
 {
-    public function __construct(public Expression $augend, public Expression $addend)
+    public function __construct(private Expression $augend, private Expression $addend)
     {
     }
 
@@ -20,6 +20,6 @@ final class Sum implements Expression
 
     public function plus(Expression $money): Expression
     {
-        // TODO: Implement plus() method.
+        return new Sum($this, $money);
     }
 }
