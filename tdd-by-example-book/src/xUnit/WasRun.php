@@ -11,9 +11,4 @@ final class WasRun extends TestCase
     {
         $this->wasRun = '1';
     }
-
-    public function run(): void
-    {
-        $this->{$this->name}();
-    }
 }

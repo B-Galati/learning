@@ -8,4 +8,9 @@ class TestCase
     public function __construct(protected string $name)
     {
     }
+
+    public function run(): void
+    {
+        $this->{$this->name}();
+    }
 }
