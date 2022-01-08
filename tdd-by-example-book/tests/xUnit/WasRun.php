@@ -1,14 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace App\xUnit;
+namespace Test\xUnit;
+
+use App\xUnit\TestCase;
 
 final class WasRun extends TestCase
 {
-    public string $wasRun = 'None';
+    public bool $wasRun = false;
 
     public function testMethod(): void
     {
-        $this->wasRun = '1';
+        $this->wasRun = true;
     }
 }
