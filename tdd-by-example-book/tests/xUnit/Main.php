@@ -30,6 +30,7 @@ class TestCaseTest extends TestCase
     {
         $this->test->run();
         assert($this->test->wasSetUp);
+        assert($this->test->log === 'setUp ');
     }
 }
 
