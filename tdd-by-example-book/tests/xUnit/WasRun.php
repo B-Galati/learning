@@ -7,16 +7,15 @@ use App\xUnit\TestCase;
 
 final class WasRun extends TestCase
 {
-    public bool   $wasRun = false;
-    public string $log;
+    public string $log = '';
 
     protected function setUp(): void
     {
-        $this->log = 'setUp ';
+        $this->log .= 'setUp ';
     }
 
     public function testMethod(): void
     {
-        $this->wasRun = true;
+        $this->log .= 'testMethod ';
     }
 }

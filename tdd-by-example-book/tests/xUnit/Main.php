@@ -13,25 +13,12 @@ use Test\xUnit\WasRun;
 
 class TestCaseTest extends TestCase
 {
-    private WasRun $test;
-
-    protected function setUp(): void
+    public function testTemplateMethod(): void
     {
-        $this->test = new WasRun('testMethod');
-    }
-
-    public function testRunning(): void
-    {
-        $this->test->run();
-        assert($this->test->wasRun);
-    }
-
-    public function testSetUp(): void
-    {
-        $this->test->run();
-        assert($this->test->log === 'setUp ');
+        $test = new WasRun('testMethod');
+        $test->run();
+        assert($test->log === 'setUp testMethod ');
     }
 }
 
-(new TestCaseTest('testRunning'))->run();
-(new TestCaseTest('testSetUp'))->run();
+(new TestCaseTest('testTemplateMethod'))->run();
