@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\xUnit;
 
-class WasRun
+final class WasRun extends TestCase
 {
     public string $wasRun = 'None';
 
@@ -14,6 +14,6 @@ class WasRun
 
     public function run(): void
     {
-        $this->testMethod();
+        $this->{$this->name}();
     }
 }
