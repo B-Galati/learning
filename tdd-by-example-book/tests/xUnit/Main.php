@@ -9,5 +9,5 @@ use App\xUnit\WasRun;
 $test = new WasRun("testMethod");
 echo $test->wasRun;
 echo "\n";
-$test->testMethod();
+$test->run();
 echo $test->wasRun;

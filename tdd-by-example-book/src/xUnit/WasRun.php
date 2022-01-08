@@ -11,4 +11,9 @@ class WasRun
     {
         $this->wasRun = '1';
     }
+
+    public function run(): void
+    {
+        $this->testMethod();
+    }
 }
