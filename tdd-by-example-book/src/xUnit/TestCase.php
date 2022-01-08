@@ -10,10 +10,12 @@ class TestCase
     }
 
     protected function setUp(): void {}
+    protected function tearDown(): void {}
 
     public function run(): void
     {
         $this->setUp();
         $this->{$this->name}();
+        $this->tearDown();
     }
 }

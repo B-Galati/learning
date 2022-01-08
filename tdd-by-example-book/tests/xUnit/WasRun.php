@@ -14,6 +14,11 @@ final class WasRun extends TestCase
         $this->log .= 'setUp ';
     }
 
+    protected function tearDown(): void
+    {
+        $this->log .= 'tearDown ';
+    }
+
     public function testMethod(): void
     {
         $this->log .= 'testMethod ';

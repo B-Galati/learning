@@ -17,7 +17,7 @@ class TestCaseTest extends TestCase
     {
         $test = new WasRun('testMethod');
         $test->run();
-        assert($test->log === 'setUp testMethod ');
+        assert($test->log === 'setUp testMethod tearDown ');
     }
 }
 
