@@ -9,8 +9,11 @@ class TestCase
     {
     }
 
+    protected function setUp(): void {}
+
     public function run(): void
     {
+        $this->setUp();
         $this->{$this->name}();
     }
 }
