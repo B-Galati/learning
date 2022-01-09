@@ -9,6 +9,7 @@ if (ini_get('zend.assertions') !== '1' || ini_get('assert.exception') !== '1') {
 }
 
 use App\xUnit\TestCase;
+use App\xUnit\TestSuite;
 use Test\xUnit\WasRun;
 
 class TestCaseTest extends TestCase
@@ -33,8 +34,20 @@ class TestCaseTest extends TestCase
         $result = $test->run();
         assert($result->summary() === '1 run, 1 failed');
     }
+
+    public function testSuite(): void
+    {
+        $suite = new TestSuite();
+        $suite->add(new WasRun('testMethod'));
+        $suite->add(new WasRun('testBrokenMethod'));
+        $result = $suite->run();
+        assert($result->summary() === '2 run, 1 failed');
+    }
 }
+
+// TODO assertions are fucked :D FIX IT
 
 (new TestCaseTest('testTemplateMethod'))->run();
 (new TestCaseTest('testResult'))->run();
 (new TestCaseTest('testFailedResult'))->run();
+(new TestCaseTest('testSuite'))->run();
