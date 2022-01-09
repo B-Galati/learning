@@ -24,7 +24,7 @@ class TestCaseTest extends TestCase
     {
         $test = new WasRun('testMethod');
         $result = $test->run();
-        assert($result->summary === '1 run, 0 failed');
+        assert($result->summary() === '1 run, 0 failed');
     }
 }
 
