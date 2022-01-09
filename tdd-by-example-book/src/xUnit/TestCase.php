@@ -18,7 +18,11 @@ class TestCase
 
         $testResult->testStarted();
         $this->setUp();
-        $this->{$this->name}();
+        try {
+            $this->{$this->name}();
+        } catch (\Throwable $e) {
+            $testResult->testFailed();
+        }
         $this->tearDown();
 
         return $testResult;

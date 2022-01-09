@@ -13,6 +13,11 @@ class TestResult
         $this->runCount++;
     }
 
+    public function testFailed(): void
+    {
+        $this->failedCount++;
+    }
+
     public function summary(): string
     {
         return sprintf('%s run, %s failed', $this->runCount, $this->failedCount);
