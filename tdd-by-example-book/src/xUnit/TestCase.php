@@ -14,10 +14,13 @@ class TestCase
 
     public function run(): TestResult
     {
+        $testResult = new TestResult();
+
+        $testResult->testStarted();
         $this->setUp();
         $this->{$this->name}();
         $this->tearDown();
 
-        return new TestResult();
+        return $testResult;
     }
 }

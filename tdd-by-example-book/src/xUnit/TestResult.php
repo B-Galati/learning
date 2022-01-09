@@ -5,8 +5,13 @@ namespace App\xUnit;
 
 class TestResult
 {
-    private int $runCount = 1;
+    private int $runCount = 0;
     private int $failedCount = 0;
+
+    public function testStarted(): void
+    {
+        $this->runCount++;
+    }
 
     public function summary(): string
     {
