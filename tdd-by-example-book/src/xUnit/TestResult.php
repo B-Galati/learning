@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\xUnit;
 
-class TestResult
+final class TestResult
 {
     private int $runCount = 0;
     private int $failedCount = 0;

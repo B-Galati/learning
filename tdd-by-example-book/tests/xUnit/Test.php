@@ -1,4 +1,5 @@
-<?php /** @noinspection PhpIllegalPsrClassPathInspection */
+<?php /** @noinspection AutoloadingIssuesInspection */
+/** @noinspection PhpIllegalPsrClassPathInspection */
 
 declare(strict_types=1);
 
@@ -12,8 +13,13 @@ use App\xUnit\TestCase;
 use App\xUnit\TestSuite;
 use Test\xUnit\WasRun;
 
-class TestCaseTest extends TestCase
+final class TestCaseTest extends TestCase
 {
+    public function testAssertionError(): void
+    {
+        assert(false);
+    }
+
     public function testTemplateMethod(): void
     {
         $test = new WasRun('testMethod');
@@ -45,9 +51,15 @@ class TestCaseTest extends TestCase
     }
 }
 
-// TODO assertions are fucked :D FIX IT
+try {
+    (new TestCaseTest('testAssertionError'))->run();
+    $assertionNotTriggered = true;
+} catch (\AssertionError $e) {}
+if (isset($assertionNotTriggered)) {
+    assert(false, 'Assertions should make the test failed.');
+}
 
 (new TestCaseTest('testTemplateMethod'))->run();
 (new TestCaseTest('testResult'))->run();
 (new TestCaseTest('testFailedResult'))->run();
-(new TestCaseTest('testSuite'))->run();
+//(new TestCaseTest('testSuite'))->run();

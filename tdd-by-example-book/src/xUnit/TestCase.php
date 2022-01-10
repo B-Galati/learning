@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\xUnit;
 
-class TestCase
+abstract class TestCase
 {
     public function __construct(protected string $name)
     {
@@ -21,6 +21,9 @@ class TestCase
         try {
             $this->{$this->name}();
         } catch (\Throwable $e) {
+            if ($e instanceof \AssertionError) {
+                throw $e;
+            }
             $testResult->testFailed();
         }
         $this->tearDown();
