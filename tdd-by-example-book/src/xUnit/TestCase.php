@@ -12,11 +12,9 @@ abstract class TestCase
     protected function setUp(): void {}
     protected function tearDown(): void {}
 
-    public function run(): TestResult
+    public function run(TestResult $result): void
     {
-        $testResult = new TestResult();
-
-        $testResult->testStarted();
+        $result->testStarted();
         $this->setUp();
         try {
             $this->{$this->name}();
@@ -24,10 +22,8 @@ abstract class TestCase
             if ($e instanceof \AssertionError) {
                 throw $e;
             }
-            $testResult->testFailed();
+            $result->testFailed();
         }
         $this->tearDown();
-
-        return $testResult;
     }
 }

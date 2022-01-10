@@ -10,11 +10,19 @@ if (ini_get('zend.assertions') !== '1' || ini_get('assert.exception') !== '1') {
 }
 
 use App\xUnit\TestCase;
+use App\xUnit\TestResult;
 use App\xUnit\TestSuite;
 use Test\xUnit\WasRun;
 
 final class TestCaseTest extends TestCase
 {
+    private TestResult $result;
+
+    protected function setUp(): void
+    {
+        $this->result = new TestResult();
+    }
+
     public function testAssertionError(): void
     {
         assert(false);
@@ -23,22 +31,22 @@ final class TestCaseTest extends TestCase
     public function testTemplateMethod(): void
     {
         $test = new WasRun('testMethod');
-        $test->run();
+        $test->run($this->result);
         assert($test->log === 'setUp testMethod tearDown ');
     }
 
     public function testResult(): void
     {
         $test = new WasRun('testMethod');
-        $result = $test->run();
-        assert($result->summary() === '1 run, 0 failed');
+        $test->run($this->result);
+        assert($this->result->summary() === '1 run, 0 failed');
     }
 
     public function testFailedResult(): void
     {
         $test = new WasRun('testBrokenMethod');
-        $result = $test->run();
-        assert($result->summary() === '1 run, 1 failed');
+        $test->run($this->result);
+        assert($this->result->summary() === '1 run, 1 failed');
     }
 
     public function testSuite(): void
@@ -46,20 +54,26 @@ final class TestCaseTest extends TestCase
         $suite = new TestSuite();
         $suite->add(new WasRun('testMethod'));
         $suite->add(new WasRun('testBrokenMethod'));
-        $result = $suite->run();
-        assert($result->summary() === '2 run, 1 failed');
+        $suite->run($this->result);
+        assert($this->result->summary() === '2 run, 1 failed');
     }
 }
 
+$result = new TestResult();
+
 try {
-    (new TestCaseTest('testAssertionError'))->run();
+    (new TestCaseTest('testAssertionError'))->run($result);
     $assertionNotTriggered = true;
 } catch (\AssertionError $e) {}
 if (isset($assertionNotTriggered)) {
     assert(false, 'Assertions should make the test failed.');
 }
 
-(new TestCaseTest('testTemplateMethod'))->run();
-(new TestCaseTest('testResult'))->run();
-(new TestCaseTest('testFailedResult'))->run();
-//(new TestCaseTest('testSuite'))->run();
+$suite = new TestSuite();
+$suite->add(new TestCaseTest('testTemplateMethod'));
+$suite->add(new TestCaseTest('testResult'));
+$suite->add(new TestCaseTest('testFailedResult'));
+$suite->add(new TestCaseTest('testSuite'));
+$suite->run($result);
+
+echo $result->summary();

@@ -5,13 +5,18 @@ namespace App\xUnit;
 
 final class TestSuite
 {
+    /** @var TestCase[] */
+    private array $tests;
+
     public function add(TestCase $testCase): void
     {
-
+        $this->tests[] = $testCase;
     }
 
-    public function run(): TestResult
+    public function run(TestResult $result): void
     {
-        return new TestResult();
+        foreach ($this->tests as $test) {
+            $test->run($result);
+        }
     }
 }
